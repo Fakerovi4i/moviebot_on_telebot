@@ -1,4 +1,5 @@
   # 🎬 Movie Search Bot
+#### [@final_Kino_bot](https://t.me/final_Kino_bot)
 
 
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/Fakerovi4i/moviebot_on_telebot)
@@ -42,3 +43,6 @@ cp .env.example .env
 После этого запусти бота:
 ```bash
 python main.py
+```
+
+#### [@final_Kino_bot](https://t.me/final_Kino_bot)
