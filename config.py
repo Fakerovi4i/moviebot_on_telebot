@@ -1,11 +1,16 @@
 import os
 from dotenv import load_dotenv, find_dotenv
 
+# Сделано для развертывания
+dotenv_path = find_dotenv()
+if dotenv_path:
+    load_dotenv(dotenv_path)
 
-if not find_dotenv():
-    exit("Переменные окружения не загружены, так как отсутствует файл .env")
-else:
-    load_dotenv()
+# Локально
+# if not find_dotenv():
+#     exit("Переменные окружения не загружены, так как отсутствует файл .env")
+# else:
+#     load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
