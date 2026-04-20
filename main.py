@@ -8,6 +8,24 @@ from bot import bot
 from database.db_connection import init_db
 from handlers.base import register_handlers
 
+import os
+import threading
+from flask import Flask
+
+
+# --- Создаем простое Flask-приложение для Health Check ---
+flask_app = Flask(__name__)
+
+@flask_app.route('/')
+@flask_app.route('/health')
+def health_check():
+    return "OK", 200
+
+def run_web_server():
+    """Запускает Flask-сервер, который будет слушать порт, назначенный Render."""
+    port = int(os.environ.get('PORT', 5000))
+    flask_app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
+
 
 def main():
     setup_logging(level=logging.INFO)
@@ -16,6 +34,11 @@ def main():
 
     init_db()
     register_handlers()
+
+    # Запускаем веб-сервер для Health Check в отдельном потоке
+    web_thread = threading.Thread(target=run_web_server, daemon=True)
+    web_thread.start()
+    logger.info("🌐 Веб-сервер для Health Check запущен.")
 
     logger.info("🤖 Бот начал работу...")
 
