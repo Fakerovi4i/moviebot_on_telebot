@@ -14,6 +14,7 @@ def main_menu_keyboard():
 
 def list_films_keyboard(films: List[Dict[str, Any]], page: int = 1, items_on_page: int = 5) -> InlineKeyboardMarkup:
     '''Клавиатура с найденными фильмами'''
+
     keyboard = InlineKeyboardMarkup(row_width=1)
 
     start_index = (page - 1) * items_on_page
@@ -21,23 +22,26 @@ def list_films_keyboard(films: List[Dict[str, Any]], page: int = 1, items_on_pag
     current_films = films[start_index:end_index]
 
     for index, film in enumerate(current_films, start=start_index+1):
-        # Защита от None или неверных типов
-        if not isinstance(film, dict):
-            continue
+
         movie_name = film.get('name', film.get('alternativeName', 'Нет названия'))
         year = film.get('year', '-')
         film_genre = film.get('genres', [{'name': '-'}])[0].get('name', '-')
         country = film.get('countries', [{'name': '-'}])[0].get('name', '-')
-        rating = film.get('rating', {}).get('kp', '-')
-        if isinstance(rating, (int, float)):
-            rating = round(rating, 1)
-        else:
-            rating = "-"
+        rating = film.get('rating', {})
+        rating_value = None
+        if isinstance(rating, dict):
+            for value in rating.values():
+                if value is not None and value != 0:
+                    rating = round(value, 1)
+                    rating_value = True
+                    break
+        if rating_value is None:
+            rating = '0'
+
         keyboard.add(
             InlineKeyboardButton(
                 f"{index}. 🎬{movie_name} | {film_genre} | {rating} | {country} | {year}",
                 callback_data=f"film_{film['id']}"))
-
 
     navigation_buttons = []
     total_pages = (len(films) + items_on_page - 1) // items_on_page

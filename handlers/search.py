@@ -1,5 +1,6 @@
 import logging
 from telebot.types import Message
+import json
 
 from bot import bot
 from api_requests import find_move_by_name
@@ -42,6 +43,7 @@ def process_find_move_by_name(message: Message):
             return
 
         # Успешный поиск
+        result = [film for film in result if isinstance(film, dict) and "id" in film]
         logger.info("Найдено %d фильмов по запросу '%s'", len(result), name)
         bot.set_state(message.from_user.id, Pagination.viewing, message.chat.id)
         with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
