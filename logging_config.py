@@ -16,7 +16,7 @@ def setup_logging(level=logging.INFO):
         datefmt='%Y-%m-%d %H:%M:%S',
         handlers=[
             logging.StreamHandler(sys.stdout),  # вывод в консоль
-            logging.FileHandler(log_dir/"bot.log", encoding='utf-8', mode='w')
+            logging.FileHandler(log_dir/"bot.log", encoding='utf-8', mode='a')
         ]
     )
 
