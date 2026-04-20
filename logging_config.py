@@ -24,5 +24,6 @@ def setup_logging(level=logging.INFO):
     logging.getLogger("urllib3").setLevel(logging.WARNING)
     logging.getLogger("telebot").setLevel(logging.WARNING)
     logging.getLogger("requests").setLevel(logging.WARNING)
+    logging.getLogger("flask").setLevel(logging.WARNING)
 
 
