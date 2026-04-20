@@ -28,6 +28,7 @@ def run_web_server():
 
 
 def main():
+    print(">>> Бот начал загрузку...", flush=True)
     setup_logging(level=logging.INFO)
     logger = logging.getLogger(__name__)
     logger.info("🤖 Бот запущен...")
@@ -58,3 +59,6 @@ if __name__ == '__main__':
     except Exception as e:
         logger = logging.getLogger(__name__)
         logger.critical("Критическая ошибка при запуске бота", exc_info=True)
+        print(f"FATAL ERROR: {e}", flush=True)
+        import traceback
+        traceback.print_exc()
