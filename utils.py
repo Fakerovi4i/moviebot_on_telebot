@@ -27,7 +27,12 @@ def info_about_move(data: Dict[str, Any]):
             poster = "https://dummyimage.com/300x450/2c3e50/ffffff.png&text=No+Poster"
 
         rating = data.get("rating", {})
+        if rating is None:
+            rating = {}
+
         kp_rate = rating.get("kp", "-")
+        if kp_rate is None:
+            kp_rate = "-"
 
         year = data.get("year", "-")
 

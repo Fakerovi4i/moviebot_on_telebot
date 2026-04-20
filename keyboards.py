@@ -29,8 +29,10 @@ def list_films_keyboard(films: List[Dict[str, Any]], page: int = 1, items_on_pag
         film_genre = film.get('genres', [{'name': '-'}])[0].get('name', '-')
         country = film.get('countries', [{'name': '-'}])[0].get('name', '-')
         rating = film.get('rating', {}).get('kp', '-')
-        if rating is None:
-            rating = '-'
+        if isinstance(rating, (int, float)):
+            rating = round(rating, 1)
+        else:
+            rating = "-"
         keyboard.add(
             InlineKeyboardButton(
                 f"{index}. 🎬{movie_name} | {film_genre} | {rating} | {country} | {year}",
