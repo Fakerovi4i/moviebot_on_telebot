@@ -1,7 +1,8 @@
 import telebot
 from telebot.storage import StateMemoryStorage
 from telebot import custom_filters
-from config import BOT_TOKEN, #PROXY
+from config import BOT_TOKEN
+# from config import PROXY
 
 # Для запуска прокси
 # from config import PROXY
