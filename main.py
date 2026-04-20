@@ -59,6 +59,7 @@ if __name__ == '__main__':
     except Exception as e:
         logger = logging.getLogger(__name__)
         logger.critical("Критическая ошибка при запуске бота", exc_info=True)
+        # Сделано для отладки
         print(f"FATAL ERROR: {e}", flush=True)
         import traceback
         traceback.print_exc()
