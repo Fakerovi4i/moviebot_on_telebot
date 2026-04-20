@@ -1,26 +1,44 @@
-# Movie Search Bot
-
-Telegram бот для поиска фильмов через Kinopoisk API.
-
-## Команды
-
-- `/start` — перезапуск
-- `/search` — поиск по названию
-- `/filters` — поиск по фильтрам
-- `/top` — топ‑100
-- `/history` — история просмотров
+# 🎬 Movie Search Bot
 
 
-## Требования
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/Fakerovi4i/moviebot_on_telebot)
 
-- Python 3.8+
-- Telegram Bot Token (от [@BotFather](https://t.me/BotFather))
-- API‑ключ [Kinopoisk API Dev](https://kinopoiskapiunofficial.tech/)
+Умный Telegram-бот для поиска фильмов и сериалов через [Kinopoisk API](https://kinopoiskapiunofficial.tech/).
 
+Поддерживает поиск по названию и **сложные фильтры** с множественным выбором.
 
-## Установка
+### ✨ Возможности
+- Поиск фильма по названию (универсальный обработчик текста)
+- Расширенный поиск по фильтрам:
+  - Жанры (множественный выбор с галочками)
+  - Страны (множественный выбор)
+  - Рейтинг и диапазон года
+- Пагинация результатов
+- История поиска пользователя
+- Просмотр Топ-100 фильмов
+- Красивые динамические клавиатуры
 
-1. `pip install -r requirements.txt`
-2. Создать `.env` с полями:
-- BOT_TOKEN=токен_бота
-- SITE_API_KEY=ключ_Kinopoisk_api
+### 🛠 Технологии
+- **Python 3.12** + **pyTelegramBotAPI (telebot)**
+- Finite State Machine (StatesGroup)
+- Kinopoisk Unofficial API
+- Динамическое формирование inline-клавиатур
+
+### ⚡ Сложности и решения
+- Множественные фильтры с визуальными галочками → динамическое обновление клавиатур в реальном времени
+- Сложная логика состояний (фильтры → пагинация → просмотр) → грамотная работа с `retrieve_data`
+- Большой объём данных → реализовал пагинацию и оптимизированный вывод
+
+### 🚀 Запуск
+```bash
+git clone https://github.com/Fakerovi4i/moviebot_on_telebot.git
+cd moviebot_on_telebot
+pip install -r requirements.txt
+
+# Создай файл .env и вставь туда свои токены
+cp .env.example .env
+```
+
+После этого запусти бота:
+```bash
+python main.py
