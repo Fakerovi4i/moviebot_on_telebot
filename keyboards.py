@@ -21,6 +21,9 @@ def list_films_keyboard(films: List[Dict[str, Any]], page: int = 1, items_on_pag
     current_films = films[start_index:end_index]
 
     for index, film in enumerate(current_films, start=start_index+1):
+        # Защита от None или неверных типов
+        if not isinstance(film, dict):
+            continue
         movie_name = film.get('name', film.get('alternativeName', 'Нет названия'))
         year = film.get('year', '-')
         film_genre = film.get('genres', [{'name': '-'}])[0].get('name', '-')
