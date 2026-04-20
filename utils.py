@@ -13,6 +13,7 @@ def info_about_move(data: Dict[str, Any]):
     Возвращает: (name, poster, kp_rate, year, countries, url, description)
     """
     try:
+        print(data)
         name = data.get("name", None)
         if name is None:
             name = data.get("names", [])
