@@ -34,7 +34,7 @@ def get_movie_by_id(movie_id: int):
         return None
 
 
-def find_move_by_name(move_name: str, page=1, limit=50):
+def find_move_by_name(move_name: str, page=1, limit=10):
     """Поиск по названию"""
     try:
         url = f"{API_HOST}/movie/search"
@@ -65,7 +65,7 @@ def find_move_by_name(move_name: str, page=1, limit=50):
         return None
 
 
-def find_movies_by_filters(filters: Dict[str, str], page=1, limit=50):
+def find_movies_by_filters(filters: Dict[str, str], page=1, limit=10):
     """Поиск фильмов по фильтрам"""
 
     try:
@@ -112,7 +112,7 @@ def find_movies_by_filters(filters: Dict[str, str], page=1, limit=50):
 
 
 
-def find_top_100(page=1, limit=100):
+def find_top_100(page=1, limit=10):
     try:
         url = f"{API_HOST}/movie"
         params = {

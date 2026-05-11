@@ -8,7 +8,7 @@ def main_menu_keyboard():
     """Главное меню"""
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add("🔍Поиск по названию", "🧩Поиск по фильтрам",)
-    keyboard.add("📜История поиска", "⭐Топ 100")
+    keyboard.add("📜История поиска", "⭐Топ 10")
     return keyboard
 
 
